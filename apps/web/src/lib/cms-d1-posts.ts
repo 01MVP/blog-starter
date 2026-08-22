@@ -517,15 +517,18 @@ export async function deleteD1Post(idOrSlug: string) {
   const now = new Date().toISOString();
   const db = getCmsDb();
 
+  const deletedSlug = await uniqueD1Slug(`${post.slug}-deleted`, post.id);
+
   await db
     .update(schema.posts)
-    .set({ status: "deleted", updatedAt: now })
+    .set({ slug: deletedSlug, status: "deleted", updatedAt: now })
     .where(eq(schema.posts.id, post.id));
 
   await invalidateCache("posts:published", "sitemap:paths");
 
   return {
     ...post,
+    slug: deletedSlug,
     status: "deleted" as const,
     updatedAt: now,
   };
@@ -604,9 +607,15 @@ async function uniqueD1Slug(base: string, currentPostId?: string) {
   const normalized = base || "untitled-post";
   let candidate = normalized;
   let index = 2;
+  const db = getCmsDb();
 
   while (true) {
-    const existing = await getD1PostBySlug(candidate, true);
+    const rows = await db
+      .select({ id: schema.posts.id })
+      .from(schema.posts)
+      .where(eq(schema.posts.slug, candidate))
+      .limit(1);
+    const existing = rows[0];
 
     if (!existing || existing.id === currentPostId) {
       return candidate;

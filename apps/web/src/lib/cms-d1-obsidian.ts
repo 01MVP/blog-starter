@@ -27,7 +27,7 @@ export async function syncD1ObsidianPosts(
   entries: ObsidianSyncEntry[],
   options: { deleteMissing?: boolean } = {},
 ): Promise<ObsidianSyncResult> {
-  const deleteMissing = options.deleteMissing ?? true;
+  const deleteMissing = Boolean(options.deleteMissing) && entries.length > 0;
   const now = new Date().toISOString();
   const db = getCmsDb();
   const existingRows = await db

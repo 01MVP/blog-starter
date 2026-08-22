@@ -43,10 +43,12 @@ import { SiteShell } from "#/components/site-shell";
 import { $getHomePageData, type HomePageData } from "#/lib/cms-server";
 import { getDocsUrl } from "#/lib/docs-i18n";
 import { getCurrentLocale } from "#/lib/i18n";
+import { publicSiteHead } from "#/lib/public-head";
 import { m } from "#/paraglide/messages.js";
 
 export const Route = createFileRoute("/")({
   loader: (): Promise<HomePageData> => $getHomePageData(),
+  head: ({ loaderData }) => publicSiteHead(loaderData?.siteSettings),
   component: HomePage,
 });
 

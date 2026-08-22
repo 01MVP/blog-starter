@@ -80,6 +80,11 @@ export async function main(argv = process.argv.slice(2), env = process.env) {
     return;
   }
 
+  if (!result.entries.length) {
+    console.log("Obsidian sync skipped: no published Markdown or MDX notes were found.");
+    return;
+  }
+
   const response = await fetch(new URL("/api/sync/obsidian", options.siteUrl), {
     method: "POST",
     headers: {
@@ -117,7 +122,7 @@ export function parseArgs(argv, env = process.env) {
   const options = {
     apiToken: env.CMS_API_TOKEN ?? env.BLOG_STARTER_API_TOKEN ?? "",
     cwd: process.cwd(),
-    deleteMissing: true,
+    deleteMissing: false,
     dryRun: env.OBSIDIAN_DRY_RUN === "true",
     ifConfigured: false,
     notesRoot: env.OBSIDIAN_NOTES_DIR ?? defaultNotesRoot,
@@ -135,6 +140,11 @@ export function parseArgs(argv, env = process.env) {
 
     if (arg === "--if-configured") {
       options.ifConfigured = true;
+      continue;
+    }
+
+    if (arg === "--delete-missing") {
+      options.deleteMissing = true;
       continue;
     }
 

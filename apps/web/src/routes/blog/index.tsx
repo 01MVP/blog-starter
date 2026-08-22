@@ -8,6 +8,7 @@ import { PostCard } from "#/components/post-card";
 import { SiteShell } from "#/components/site-shell";
 import { $getBlogIndexPage, type BlogIndexPageData } from "#/lib/cms-server";
 import { getCurrentLocale } from "#/lib/i18n";
+import { publicSiteHead } from "#/lib/public-head";
 import { m } from "#/paraglide/messages.js";
 
 const BLOG_PAGE_SIZE = 6;
@@ -35,6 +36,7 @@ export const Route = createFileRoute("/blog/")({
         pageSize: BLOG_PAGE_SIZE,
       },
     }),
+  head: ({ loaderData }) => publicSiteHead(loaderData?.siteSettings),
   component: BlogIndexPage,
 });
 
