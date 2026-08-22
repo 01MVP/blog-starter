@@ -291,6 +291,7 @@
 /** @typedef {{}} LoginInputs */
 /** @typedef {{}} Login_AlternativeInputs */
 /** @typedef {{}} Login_EmailInputs */
+/** @typedef {{}} Login_Email_PlaceholderInputs */
 /** @typedef {{}} Login_ErrorInputs */
 /** @typedef {{ name: NonNullable<unknown> }} Login_GreetingInputs */
 /** @typedef {{}} Login_No_AccountInputs */
@@ -331,12 +332,16 @@
 /** @typedef {{}} Site_SubtitleInputs */
 /** @typedef {{}} SignupInputs */
 /** @typedef {{}} Signup_Confirm_PasswordInputs */
+/** @typedef {{}} Signup_Confirm_Password_PlaceholderInputs */
 /** @typedef {{}} Signup_ErrorInputs */
 /** @typedef {{ name: NonNullable<unknown> }} Signup_GreetingInputs */
 /** @typedef {{}} Signup_Has_AccountInputs */
 /** @typedef {{}} Signup_NameInputs */
+/** @typedef {{}} Signup_Name_PlaceholderInputs */
 /** @typedef {{}} Signup_Name_RequiredInputs */
+/** @typedef {{}} Signup_Password_HideInputs */
 /** @typedef {{}} Signup_Password_MismatchInputs */
+/** @typedef {{}} Signup_Password_ShowInputs */
 /** @typedef {{}} Signup_PendingInputs */
 /** @typedef {{}} Sign_OutInputs */
 /** @typedef {{}} Submit_CommentInputs */
@@ -346,6 +351,7 @@
 /** @typedef {{}} Theme_LightInputs */
 /** @typedef {{}} Theme_Preset_AppleInputs */
 /** @typedef {{}} Theme_Preset_ClaudeInputs */
+/** @typedef {{}} Theme_Preset_EditorialInputs */
 /** @typedef {{}} Theme_Preset_BrutalistInputs */
 /** @typedef {{}} Theme_Preset_MakerInputs */
 /** @typedef {{}} Theme_SystemInputs */
@@ -645,6 +651,7 @@ export const layout_preset_shelf: (inputs: Layout_Preset_ShelfInputs) => Localiz
 export const login: (inputs: LoginInputs) => LocalizedString;
 export const login_alternative: (inputs: Login_AlternativeInputs) => LocalizedString;
 export const login_email: (inputs: Login_EmailInputs) => LocalizedString;
+export const login_email_placeholder: (inputs: Login_Email_PlaceholderInputs) => LocalizedString;
 export const login_error: (inputs: Login_ErrorInputs) => LocalizedString;
 export const login_greeting: (inputs: Login_GreetingInputs) => LocalizedString;
 export const login_no_account: (inputs: Login_No_AccountInputs) => LocalizedString;
@@ -685,12 +692,16 @@ export const series_title: (inputs: Series_TitleInputs) => LocalizedString;
 export const site_subtitle: (inputs: Site_SubtitleInputs) => LocalizedString;
 export const signup: (inputs: SignupInputs) => LocalizedString;
 export const signup_confirm_password: (inputs: Signup_Confirm_PasswordInputs) => LocalizedString;
+export const signup_confirm_password_placeholder: (inputs: Signup_Confirm_Password_PlaceholderInputs) => LocalizedString;
 export const signup_error: (inputs: Signup_ErrorInputs) => LocalizedString;
 export const signup_greeting: (inputs: Signup_GreetingInputs) => LocalizedString;
 export const signup_has_account: (inputs: Signup_Has_AccountInputs) => LocalizedString;
 export const signup_name: (inputs: Signup_NameInputs) => LocalizedString;
+export const signup_name_placeholder: (inputs: Signup_Name_PlaceholderInputs) => LocalizedString;
 export const signup_name_required: (inputs: Signup_Name_RequiredInputs) => LocalizedString;
+export const signup_password_hide: (inputs: Signup_Password_HideInputs) => LocalizedString;
 export const signup_password_mismatch: (inputs: Signup_Password_MismatchInputs) => LocalizedString;
+export const signup_password_show: (inputs: Signup_Password_ShowInputs) => LocalizedString;
 export const signup_pending: (inputs: Signup_PendingInputs) => LocalizedString;
 export const sign_out: (inputs: Sign_OutInputs) => LocalizedString;
 export const submit_comment: (inputs: Submit_CommentInputs) => LocalizedString;
@@ -700,6 +711,7 @@ export const theme_dark: (inputs: Theme_DarkInputs) => LocalizedString;
 export const theme_light: (inputs: Theme_LightInputs) => LocalizedString;
 export const theme_preset_apple: (inputs: Theme_Preset_AppleInputs) => LocalizedString;
 export const theme_preset_claude: (inputs: Theme_Preset_ClaudeInputs) => LocalizedString;
+export const theme_preset_editorial: (inputs: Theme_Preset_EditorialInputs) => LocalizedString;
 export const theme_preset_brutalist: (inputs: Theme_Preset_BrutalistInputs) => LocalizedString;
 export const theme_preset_maker: (inputs: Theme_Preset_MakerInputs) => LocalizedString;
 export const theme_system: (inputs: Theme_SystemInputs) => LocalizedString;
@@ -1026,6 +1038,7 @@ export type Layout_Preset_ShelfInputs = {};
 export type LoginInputs = {};
 export type Login_AlternativeInputs = {};
 export type Login_EmailInputs = {};
+export type Login_Email_PlaceholderInputs = {};
 export type Login_ErrorInputs = {};
 export type Login_GreetingInputs = {
     name: NonNullable<unknown>;
@@ -1081,14 +1094,18 @@ export type Series_TitleInputs = {};
 export type Site_SubtitleInputs = {};
 export type SignupInputs = {};
 export type Signup_Confirm_PasswordInputs = {};
+export type Signup_Confirm_Password_PlaceholderInputs = {};
 export type Signup_ErrorInputs = {};
 export type Signup_GreetingInputs = {
     name: NonNullable<unknown>;
 };
 export type Signup_Has_AccountInputs = {};
 export type Signup_NameInputs = {};
+export type Signup_Name_PlaceholderInputs = {};
 export type Signup_Name_RequiredInputs = {};
+export type Signup_Password_HideInputs = {};
 export type Signup_Password_MismatchInputs = {};
+export type Signup_Password_ShowInputs = {};
 export type Signup_PendingInputs = {};
 export type Sign_OutInputs = {};
 export type Submit_CommentInputs = {};
@@ -1098,6 +1115,7 @@ export type Theme_DarkInputs = {};
 export type Theme_LightInputs = {};
 export type Theme_Preset_AppleInputs = {};
 export type Theme_Preset_ClaudeInputs = {};
+export type Theme_Preset_EditorialInputs = {};
 export type Theme_Preset_BrutalistInputs = {};
 export type Theme_Preset_MakerInputs = {};
 export type Theme_SystemInputs = {};

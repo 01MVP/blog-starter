@@ -1,4 +1,9 @@
-import type { LayoutPreset, SupportedLocale, ThemePreset } from "@repo/core";
+import {
+  normalizeThemePreset,
+  type LayoutPreset,
+  type SupportedLocale,
+  type ThemePreset,
+} from "@repo/core";
 import { Button } from "@repo/ui/components/button";
 import { PaletteIcon } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
@@ -91,7 +96,7 @@ function getStylePresetSwitchLabel(locale: SupportedLocale, nextPreset: StylePre
 }
 
 function getPresetForAttributes(themePreset?: string, layoutPreset?: string) {
-  const normalizedThemePreset = themePreset === "claude" ? "editorial" : themePreset;
+  const normalizedThemePreset = normalizeThemePreset(themePreset, defaultStylePreset.themePreset);
 
   return (
     stylePresetOptions.find(
@@ -221,7 +226,8 @@ export function StylePresetRuntimeScript({
   }
 
   function getPresetForAttributes(themePreset, layoutPreset) {
-    const normalizedThemePreset = themePreset === "claude" ? "editorial" : themePreset;
+    const normalizedThemePreset =
+      themePreset === "claude" || themePreset === "editorial-edge" ? "editorial" : themePreset;
 
     return (
       presets.find(

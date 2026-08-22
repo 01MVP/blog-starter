@@ -1,6 +1,4 @@
 {
-  // Live demo Worker for blog.01mvp.com. Do not copy these resource IDs into a fork.
-  // Start from wrangler.example.jsonc when creating your own site.
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "blog-starter",
   "main": "./src/server.ts",
@@ -12,15 +10,11 @@
   "triggers": {
     "crons": ["0 9 * * *"],
   },
-  "routes": [
-    {
-      "pattern": "blog.01mvp.com",
-      "custom_domain": true,
-    },
-  ],
+  // Optional: add a custom domain after Cloudflare owns the zone.
+  // "routes": [{ "pattern": "blog.example.com", "custom_domain": true }],
   "vars": {
-    "VITE_BASE_URL": "https://blog.01mvp.com",
-    "CMS_PUBLIC_SITE_URL": "https://blog.01mvp.com",
+    "VITE_BASE_URL": "https://your-domain.example",
+    "CMS_PUBLIC_SITE_URL": "https://your-domain.example",
     "CMS_BACKUP_RETENTION_DAYS": "30",
     "CMS_EMAIL_SENDING_ENABLED": "false",
     "CMS_EMAIL_FROM": "",
@@ -32,7 +26,7 @@
     {
       "binding": "CMS_DB",
       "database_name": "blog-starter-cms",
-      "database_id": "b267c97c-72a5-45a1-9f5a-cfd0b8e8067c",
+      "database_id": "00000000-0000-0000-0000-000000000000",
       "migrations_dir": "../../packages/db/migrations",
     },
   ],
@@ -45,7 +39,7 @@
   "kv_namespaces": [
     {
       "binding": "CMS_CACHE",
-      "id": "c1150cc286374ba9919f48f48a985f36",
+      "id": "00000000000000000000000000000000",
     },
   ],
 }

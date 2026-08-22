@@ -12,34 +12,13 @@ import { env } from "cloudflare:workers";
 import { count, eq } from "drizzle-orm";
 
 import { auth } from "#/lib/auth";
+import { callAuthEndpoint, readAuthPayload } from "#/lib/auth-endpoint";
 import { getSetCookieValues } from "#/lib/auth-helpers";
 import {
   isSocialProviderConfigured,
   socialProviderDisplayName,
   type SocialProviderEnv,
 } from "#/lib/social-providers";
-
-async function callAuthEndpoint(path: string, body: object, request: Request) {
-  const url = new URL(path, request.url);
-  const headers = new Headers(request.headers);
-  headers.set("content-type", "application/json");
-
-  return auth.handler(
-    new Request(url, {
-      body: JSON.stringify(body),
-      headers,
-      method: "POST",
-    }),
-  );
-}
-
-async function readAuthPayload<TPayload>(response: Response) {
-  try {
-    return (await response.clone().json()) as TPayload;
-  } catch {
-    return null;
-  }
-}
 
 type AdminUser = {
   id: string;

@@ -3,6 +3,7 @@ import { assertPassword, digestText, extractSetCookieHeaders, normalizeEmail } f
 import { env } from "cloudflare:workers";
 
 import { auth } from "#/lib/auth";
+import { callAuthEndpoint, readAuthPayload } from "#/lib/auth-endpoint";
 import { getD1SiteSettings } from "#/lib/cms-d1";
 import { sendPasswordResetEmail } from "#/lib/cms-email";
 import { getClientIp } from "#/lib/comment-guard";
@@ -29,28 +30,6 @@ type AuthUserPayload = {
   error?: string;
   code?: string;
 };
-
-async function callAuthEndpoint(path: string, body: object, request: Request) {
-  const url = new URL(path, request.url);
-  const headers = new Headers(request.headers);
-  headers.set("content-type", "application/json");
-
-  return auth.handler(
-    new Request(url, {
-      body: JSON.stringify(body),
-      headers,
-      method: "POST",
-    }),
-  );
-}
-
-async function readAuthPayload<TPayload>(response: Response) {
-  try {
-    return (await response.clone().json()) as TPayload;
-  } catch {
-    return null;
-  }
-}
 
 export async function requestAccountPasswordReset(
   emailInput: string | undefined,

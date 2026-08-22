@@ -77,7 +77,7 @@ This command writes only to the local D1 database under `.wrangler/state`. It do
 
 ### Production deployment
 
-Before deploying, replace the D1 database id, KV namespace id, public site URL, and optional custom domain values in `apps/web/wrangler.jsonc`. The deploy command fails early if placeholders remain.
+This repository's `apps/web/wrangler.jsonc` is the live `blog.01mvp.com` demo. When you create your own site, copy `apps/web/wrangler.example.jsonc` to `apps/web/wrangler.jsonc`, then replace the D1 database id, KV namespace id, public site URL, and optional custom domain. The deploy command fails early if placeholders remain.
 
 ```sh
 pnpm deploy:web

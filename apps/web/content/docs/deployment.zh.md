@@ -77,7 +77,7 @@ password: 1
 
 ### 生产部署
 
-部署前替换 `apps/web/wrangler.jsonc` 里的 D1 database id、KV namespace id、公开站点 URL 及可选自定义域名。Placeholder 未替换时 `pnpm deploy:web` 会提前失败。
+这个仓库的 `apps/web/wrangler.jsonc` 是 `blog.01mvp.com` 演示站的线上配置。创建你自己的站点时，把 `apps/web/wrangler.example.jsonc` 复制为 `apps/web/wrangler.jsonc`，再替换 D1 database id、KV namespace id、公开站点 URL 和可选自定义域名。Placeholder 未替换时 `pnpm deploy:web` 会提前失败。
 
 ```sh
 pnpm deploy:web

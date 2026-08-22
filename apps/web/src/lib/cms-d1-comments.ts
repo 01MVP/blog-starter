@@ -9,8 +9,8 @@ import {
 import * as schema from "@repo/db/schema/cms";
 import { eq, and, desc, asc } from "drizzle-orm";
 
-import { getD1SiteSettings } from "./cms-d1-assets";
 import { getD1PostBySlug } from "./cms-d1-posts";
+import { getD1SiteSettings } from "./cms-d1-settings";
 import {
   MIN_COMMENT_LENGTH,
   MAX_COMMENT_LENGTH,

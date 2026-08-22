@@ -1,3 +1,2 @@
 export * from "./auth.schema";
 export * as cmsSchema from "./cms.sqlite";
-// export your other schemas here

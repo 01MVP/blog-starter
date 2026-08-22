@@ -1,5 +1,7 @@
 import {
   normalizeCommentBlockedKeywords,
+  normalizeLayoutPreset,
+  normalizeThemePreset,
   siteSettings,
   type ApiToken,
   type ApiTokenScope,
@@ -16,7 +18,9 @@ import {
   type Tag,
 } from "@repo/core";
 import * as schema from "@repo/db/schema/cms";
-import { env } from "cloudflare:workers";
+import { and, eq, ne, or, sql } from "drizzle-orm";
+
+import { getPublicSiteUrl } from "./runtime-config";
 
 // ---------------------------------------------------------------------------
 // Content limits
@@ -249,8 +253,6 @@ export function drizzleRowToApiToken(row: typeof schema.apiTokens.$inferSelect):
 // Published-scope WHERE condition (reused by multiple query builders)
 // ---------------------------------------------------------------------------
 
-import { eq, and, or, ne, sql } from "drizzle-orm";
-
 function publishedWhereClause() {
   const now = new Date().toISOString();
   return or(
@@ -317,28 +319,10 @@ export function normalizeSiteSettings(
   };
 }
 
-function normalizeThemePreset(value: string | undefined, fallback: SiteSettings["themePreset"]) {
-  if (value === "maker" || value === "apple" || value === "editorial" || value === "brutalist") {
-    return value;
-  }
-
-  if (value === "claude" || value === "editorial-edge") {
-    return "editorial" as const;
-  }
-
-  return fallback;
-}
-
-function normalizeLayoutPreset(value: string | undefined, fallback: SiteSettings["layoutPreset"]) {
-  return value === "developer" || value === "journal" || value === "shelf" ? value : fallback;
-}
-
 export function runtimeDefaultSiteSettings(): SiteSettings {
-  const publicUrl = env.CMS_PUBLIC_SITE_URL || env.VITE_BASE_URL || siteSettings.url;
-
   return {
     ...siteSettings,
-    url: publicUrl,
+    url: getPublicSiteUrl(siteSettings.url),
   };
 }
 

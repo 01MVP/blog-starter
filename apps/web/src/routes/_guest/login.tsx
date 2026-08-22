@@ -1,6 +1,6 @@
 import { SiGithub, SiGoogle } from "@icons-pack/react-simple-icons";
 import { authQueryOptions, type AuthQueryResult } from "@repo/auth/tanstack/queries";
-import { getSiteSettingsForLocale } from "@repo/core";
+import { localizeSiteSettings } from "@repo/core";
 import { Button, buttonVariants } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
 import { Label } from "@repo/ui/components/label";
@@ -16,6 +16,8 @@ import { getCurrentLocale } from "#/lib/i18n";
 import type { SocialProvider } from "#/lib/social-providers";
 import { m } from "#/paraglide/messages.js";
 
+import { Route as GuestRoute } from "./route";
+
 export const Route = createFileRoute("/_guest/login")({
   validateSearch: (search): { error?: boolean } => (search.error === "1" ? { error: true } : {}),
   loader: (): Promise<AccountLoginOptions> => $getAccountLoginOptions(),
@@ -29,7 +31,7 @@ function LoginForm() {
   const { socialProviders } = Route.useLoaderData();
   const search = Route.useSearch();
   const locale = getCurrentLocale();
-  const siteSettings = getSiteSettingsForLocale(locale);
+  const siteSettings = localizeSiteSettings(GuestRoute.useLoaderData().siteSettings, locale);
   const copy = getLoginRecoveryCopy(locale);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -158,7 +160,7 @@ function LoginForm() {
                 id="email"
                 name="email"
                 type="email"
-                placeholder="hello@example.com"
+                placeholder={m.login_email_placeholder()}
                 autoComplete="email"
                 readOnly={isPending}
                 required

@@ -129,7 +129,7 @@ function BlogPostPage() {
     ? m.comments_description()
     : null;
   const articleBody = buildArticleBody(localizedPost.contentHtml);
-  const editLabel = locale === "zh" ? "编辑文章" : m.admin_posts_edit();
+  const editLabel = m.admin_posts_edit();
   const coverImage = resolvePostCoverImage(localizedPost.coverImage);
 
   return (

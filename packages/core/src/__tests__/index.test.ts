@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 
 import { posts, tags } from "../demo-data";
-import { formatDate } from "../index";
+import { formatDate, pickRelatedPosts } from "../index";
 
 // Helpers that match the removed index.ts wrappers, kept for test purposes only
 function getPublishedPosts() {
@@ -30,17 +30,7 @@ function getTagBySlug(slug: string) {
 
 function getRelatedPosts(postId: string) {
   const post = posts.find((candidate) => candidate.id === postId);
-
-  if (!post) {
-    return [];
-  }
-
-  const postTagSlugs = new Set(post.tags.map((tag) => tag.slug));
-
-  return getPublishedPosts()
-    .filter((candidate) => candidate.id !== post.id)
-    .filter((candidate) => candidate.tags.some((tag) => postTagSlugs.has(tag.slug)))
-    .slice(0, 3);
+  return post ? pickRelatedPosts(post, getPublishedPosts()) : [];
 }
 
 describe("getPublishedPosts", () => {

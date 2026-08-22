@@ -67,7 +67,7 @@ For maintenance-only tasks, collect only:
    - KV namespace for cache metadata and short-lived records
    - R2 bucket for images, imports, exports, and backups when R2 is enabled
 7. If R2 cannot be activated because the account needs a payment method, ask the user to confirm the payment method or explicitly choose a reduced setup. Reduced setup must document that image upload, import, export, and ZIP backups are affected.
-8. Generate required secrets, update `wrangler.jsonc`, and apply D1 migrations.
+8. Generate required secrets, copy `apps/web/wrangler.example.jsonc` to `apps/web/wrangler.jsonc` when creating a new site, fill in the real D1/KV/R2/URL values, and apply D1 migrations. Never reuse the demo resource IDs from this repository's live `wrangler.jsonc`.
 9. Deploy the Worker.
 10. Bind the custom domain when provided. If the domain is not on Cloudflare, ask the user to complete domain purchase, zone setup, nameserver changes, or route confirmation.
 11. Verify that the deployed Worker and custom domain route match the selected target.

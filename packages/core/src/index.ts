@@ -8,6 +8,8 @@ export {
   normalizeCommentBlockedKeywords,
 } from "./comment-moderation";
 export { htmlToText, markdownToText, renderMarkdownToHtml, sanitizeHtml } from "./markdown";
+export { normalizeLayoutPreset, normalizeThemePreset } from "./presets";
+export { pickRelatedPosts } from "./related-posts";
 export {
   assertPassword,
   authErrorMessage,

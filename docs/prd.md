@@ -1,5 +1,7 @@
 # 01mvp-blog-starter 最终需求文档
 
+[English version](./prd.en.md)
+
 ## 1. 项目定位
 
 ### 1.1 项目名称

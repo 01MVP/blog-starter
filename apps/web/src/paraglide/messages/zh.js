@@ -292,6 +292,7 @@
 /** @typedef {{}} LoginInputs */
 /** @typedef {{}} Login_AlternativeInputs */
 /** @typedef {{}} Login_EmailInputs */
+/** @typedef {{}} Login_Email_PlaceholderInputs */
 /** @typedef {{}} Login_ErrorInputs */
 /** @typedef {{ name: NonNullable<unknown> }} Login_GreetingInputs */
 /** @typedef {{}} Login_No_AccountInputs */
@@ -332,12 +333,16 @@
 /** @typedef {{}} Site_SubtitleInputs */
 /** @typedef {{}} SignupInputs */
 /** @typedef {{}} Signup_Confirm_PasswordInputs */
+/** @typedef {{}} Signup_Confirm_Password_PlaceholderInputs */
 /** @typedef {{}} Signup_ErrorInputs */
 /** @typedef {{ name: NonNullable<unknown> }} Signup_GreetingInputs */
 /** @typedef {{}} Signup_Has_AccountInputs */
 /** @typedef {{}} Signup_NameInputs */
+/** @typedef {{}} Signup_Name_PlaceholderInputs */
 /** @typedef {{}} Signup_Name_RequiredInputs */
+/** @typedef {{}} Signup_Password_HideInputs */
 /** @typedef {{}} Signup_Password_MismatchInputs */
+/** @typedef {{}} Signup_Password_ShowInputs */
 /** @typedef {{}} Signup_PendingInputs */
 /** @typedef {{}} Sign_OutInputs */
 /** @typedef {{}} Submit_CommentInputs */
@@ -347,6 +352,7 @@
 /** @typedef {{}} Theme_LightInputs */
 /** @typedef {{}} Theme_Preset_AppleInputs */
 /** @typedef {{}} Theme_Preset_ClaudeInputs */
+/** @typedef {{}} Theme_Preset_EditorialInputs */
 /** @typedef {{}} Theme_Preset_BrutalistInputs */
 /** @typedef {{}} Theme_Preset_MakerInputs */
 /** @typedef {{}} Theme_SystemInputs */
@@ -1524,6 +1530,10 @@ export const login_email = /** @type {(inputs: Login_EmailInputs) => LocalizedSt
 	return /** @type {LocalizedString} */ (`邮箱`)
 };
 
+export const login_email_placeholder = /** @type {(inputs: Login_Email_PlaceholderInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`hello@example.com`)
+};
+
 export const login_error = /** @type {(inputs: Login_ErrorInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`登录时出现错误。`)
 };
@@ -1684,6 +1694,10 @@ export const signup_confirm_password = /** @type {(inputs: Signup_Confirm_Passwo
 	return /** @type {LocalizedString} */ (`确认密码`)
 };
 
+export const signup_confirm_password_placeholder = /** @type {(inputs: Signup_Confirm_Password_PlaceholderInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`再次输入密码`)
+};
+
 export const signup_error = /** @type {(inputs: Signup_ErrorInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`注册时出现错误。`)
 };
@@ -1700,12 +1714,24 @@ export const signup_name = /** @type {(inputs: Signup_NameInputs) => LocalizedSt
 	return /** @type {LocalizedString} */ (`用户名`)
 };
 
+export const signup_name_placeholder = /** @type {(inputs: Signup_Name_PlaceholderInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`你的名字`)
+};
+
 export const signup_name_required = /** @type {(inputs: Signup_Name_RequiredInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`请填写用户名。`)
 };
 
+export const signup_password_hide = /** @type {(inputs: Signup_Password_HideInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`隐藏密码`)
+};
+
 export const signup_password_mismatch = /** @type {(inputs: Signup_Password_MismatchInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`两次输入的密码不一致。`)
+};
+
+export const signup_password_show = /** @type {(inputs: Signup_Password_ShowInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`显示密码`)
 };
 
 export const signup_pending = /** @type {(inputs: Signup_PendingInputs) => LocalizedString} */ () => {
@@ -1741,6 +1767,10 @@ export const theme_preset_apple = /** @type {(inputs: Theme_Preset_AppleInputs) 
 };
 
 export const theme_preset_claude = /** @type {(inputs: Theme_Preset_ClaudeInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`暖调人文`)
+};
+
+export const theme_preset_editorial = /** @type {(inputs: Theme_Preset_EditorialInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`暖调人文`)
 };
 

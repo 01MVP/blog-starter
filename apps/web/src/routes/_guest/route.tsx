@@ -1,8 +1,9 @@
 import { authQueryOptions } from "@repo/auth/tanstack/queries";
-import { getSiteSettingsForLocale } from "@repo/core";
+import { localizeSiteSettings } from "@repo/core";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 
 import { redirectForRole, safeAccountRedirectPath } from "#/lib/account-routing";
+import { $getSiteSettingsPageData, type SiteSettingsPageData } from "#/lib/cms-server";
 import { getCurrentLocale } from "#/lib/i18n";
 import { getServerAuthUser } from "#/lib/route-auth";
 
@@ -12,7 +13,6 @@ export const Route = createFileRoute("/_guest")({
 
     return redirectTo === "/app" ? {} : { redirectTo };
   },
-  component: RouteComponent,
   beforeLoad: async ({ context, search }) => {
     // Redirect path when user is already present,
     // or after successful login/signup
@@ -45,15 +45,18 @@ export const Route = createFileRoute("/_guest")({
       redirectUrl: REDIRECT_URL,
     };
   },
+  loader: (): Promise<SiteSettingsPageData> => $getSiteSettingsPageData(),
+  component: RouteComponent,
 });
 
 function RouteComponent() {
-  const siteSettings = getSiteSettingsForLocale(getCurrentLocale());
+  const { siteSettings } = Route.useLoaderData();
+  const localizedSiteSettings = localizeSiteSettings(siteSettings, getCurrentLocale());
 
   return (
     <div
-      data-theme-preset={siteSettings.themePreset}
-      data-layout-preset={siteSettings.layoutPreset}
+      data-theme-preset={localizedSiteSettings.themePreset}
+      data-layout-preset={localizedSiteSettings.layoutPreset}
       className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10"
     >
       <div className="w-full max-w-sm">

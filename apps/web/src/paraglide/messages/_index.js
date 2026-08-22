@@ -294,6 +294,7 @@ import { getLocale, experimentalStaticLocale } from "../runtime.js"
 /** @typedef {{}} LoginInputs */
 /** @typedef {{}} Login_AlternativeInputs */
 /** @typedef {{}} Login_EmailInputs */
+/** @typedef {{}} Login_Email_PlaceholderInputs */
 /** @typedef {{}} Login_ErrorInputs */
 /** @typedef {{ name: NonNullable<unknown> }} Login_GreetingInputs */
 /** @typedef {{}} Login_No_AccountInputs */
@@ -334,12 +335,16 @@ import { getLocale, experimentalStaticLocale } from "../runtime.js"
 /** @typedef {{}} Site_SubtitleInputs */
 /** @typedef {{}} SignupInputs */
 /** @typedef {{}} Signup_Confirm_PasswordInputs */
+/** @typedef {{}} Signup_Confirm_Password_PlaceholderInputs */
 /** @typedef {{}} Signup_ErrorInputs */
 /** @typedef {{ name: NonNullable<unknown> }} Signup_GreetingInputs */
 /** @typedef {{}} Signup_Has_AccountInputs */
 /** @typedef {{}} Signup_NameInputs */
+/** @typedef {{}} Signup_Name_PlaceholderInputs */
 /** @typedef {{}} Signup_Name_RequiredInputs */
+/** @typedef {{}} Signup_Password_HideInputs */
 /** @typedef {{}} Signup_Password_MismatchInputs */
+/** @typedef {{}} Signup_Password_ShowInputs */
 /** @typedef {{}} Signup_PendingInputs */
 /** @typedef {{}} Sign_OutInputs */
 /** @typedef {{}} Submit_CommentInputs */
@@ -349,6 +354,7 @@ import { getLocale, experimentalStaticLocale } from "../runtime.js"
 /** @typedef {{}} Theme_LightInputs */
 /** @typedef {{}} Theme_Preset_AppleInputs */
 /** @typedef {{}} Theme_Preset_ClaudeInputs */
+/** @typedef {{}} Theme_Preset_EditorialInputs */
 /** @typedef {{}} Theme_Preset_BrutalistInputs */
 /** @typedef {{}} Theme_Preset_MakerInputs */
 /** @typedef {{}} Theme_SystemInputs */
@@ -4449,6 +4455,20 @@ export const login_email = /** @type {((inputs?: Login_EmailInputs, options?: { 
 /**
 * | output |
 * | --- |
+* | "hello@example.com" |
+*
+* @param {Login_Email_PlaceholderInputs} inputs
+* @param {{ locale?: "en" | "zh" }} options
+* @returns {LocalizedString}
+*/
+export const login_email_placeholder = /** @type {((inputs?: Login_Email_PlaceholderInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Login_Email_PlaceholderInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
+	if (locale === "en") return __en.login_email_placeholder(inputs)
+	return __zh.login_email_placeholder(inputs)
+});
+/**
+* | output |
+* | --- |
 * | "An error occurred while signing in." |
 *
 * @param {Login_ErrorInputs} inputs
@@ -5009,6 +5029,20 @@ export const signup_confirm_password = /** @type {((inputs?: Signup_Confirm_Pass
 /**
 * | output |
 * | --- |
+* | "Confirm password" |
+*
+* @param {Signup_Confirm_Password_PlaceholderInputs} inputs
+* @param {{ locale?: "en" | "zh" }} options
+* @returns {LocalizedString}
+*/
+export const signup_confirm_password_placeholder = /** @type {((inputs?: Signup_Confirm_Password_PlaceholderInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Signup_Confirm_Password_PlaceholderInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
+	if (locale === "en") return __en.signup_confirm_password_placeholder(inputs)
+	return __zh.signup_confirm_password_placeholder(inputs)
+});
+/**
+* | output |
+* | --- |
 * | "An error occurred while signing up." |
 *
 * @param {Signup_ErrorInputs} inputs
@@ -5065,6 +5099,20 @@ export const signup_name = /** @type {((inputs?: Signup_NameInputs, options?: { 
 /**
 * | output |
 * | --- |
+* | "your name" |
+*
+* @param {Signup_Name_PlaceholderInputs} inputs
+* @param {{ locale?: "en" | "zh" }} options
+* @returns {LocalizedString}
+*/
+export const signup_name_placeholder = /** @type {((inputs?: Signup_Name_PlaceholderInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Signup_Name_PlaceholderInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
+	if (locale === "en") return __en.signup_name_placeholder(inputs)
+	return __zh.signup_name_placeholder(inputs)
+});
+/**
+* | output |
+* | --- |
 * | "Username is required." |
 *
 * @param {Signup_Name_RequiredInputs} inputs
@@ -5079,6 +5127,20 @@ export const signup_name_required = /** @type {((inputs?: Signup_Name_RequiredIn
 /**
 * | output |
 * | --- |
+* | "Hide password" |
+*
+* @param {Signup_Password_HideInputs} inputs
+* @param {{ locale?: "en" | "zh" }} options
+* @returns {LocalizedString}
+*/
+export const signup_password_hide = /** @type {((inputs?: Signup_Password_HideInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Signup_Password_HideInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
+	if (locale === "en") return __en.signup_password_hide(inputs)
+	return __zh.signup_password_hide(inputs)
+});
+/**
+* | output |
+* | --- |
 * | "Passwords do not match." |
 *
 * @param {Signup_Password_MismatchInputs} inputs
@@ -5089,6 +5151,20 @@ export const signup_password_mismatch = /** @type {((inputs?: Signup_Password_Mi
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
 	if (locale === "en") return __en.signup_password_mismatch(inputs)
 	return __zh.signup_password_mismatch(inputs)
+});
+/**
+* | output |
+* | --- |
+* | "Show password" |
+*
+* @param {Signup_Password_ShowInputs} inputs
+* @param {{ locale?: "en" | "zh" }} options
+* @returns {LocalizedString}
+*/
+export const signup_password_show = /** @type {((inputs?: Signup_Password_ShowInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Signup_Password_ShowInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
+	if (locale === "en") return __en.signup_password_show(inputs)
+	return __zh.signup_password_show(inputs)
 });
 /**
 * | output |
@@ -5215,6 +5291,20 @@ export const theme_preset_claude = /** @type {((inputs?: Theme_Preset_ClaudeInpu
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
 	if (locale === "en") return __en.theme_preset_claude(inputs)
 	return __zh.theme_preset_claude(inputs)
+});
+/**
+* | output |
+* | --- |
+* | "Warm Editorial" |
+*
+* @param {Theme_Preset_EditorialInputs} inputs
+* @param {{ locale?: "en" | "zh" }} options
+* @returns {LocalizedString}
+*/
+export const theme_preset_editorial = /** @type {((inputs?: Theme_Preset_EditorialInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Theme_Preset_EditorialInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
+	if (locale === "en") return __en.theme_preset_editorial(inputs)
+	return __zh.theme_preset_editorial(inputs)
 });
 /**
 * | output |

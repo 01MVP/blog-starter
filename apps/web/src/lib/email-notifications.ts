@@ -6,7 +6,7 @@ import * as cmsSchema from "@repo/db/schema/cms";
 import { env } from "cloudflare:workers";
 import { and, desc, eq, gt, lte, or } from "drizzle-orm";
 
-import { getD1SiteSettings } from "./cms-d1-assets";
+import { getD1SiteSettings } from "./cms-d1-settings";
 import { getCmsDb } from "./cms-db";
 import { getEmailDeliveryStatus, sendCmsEmail } from "./cms-email";
 

@@ -34,7 +34,9 @@
 pnpm deploy:web
 ```
 
-第一次生产部署前，先创建或选择目标 D1 数据库、R2 存储桶和 KV namespace，然后替换 `apps/web/wrangler.jsonc` 里的 placeholder。只要 placeholder ID 或 placeholder URL 还在，部署脚本会提前失败。
+这个仓库里的 `apps/web/wrangler.jsonc` 是 `blog.01mvp.com` 演示站的线上配置。不要把里面的 D1、KV、R2 id 复制到你自己的站点。
+
+Fork 模板时，把 `apps/web/wrangler.example.jsonc` 复制为 `apps/web/wrangler.jsonc`，再创建自己的 D1、R2 和 KV，并替换 placeholder。只要 placeholder ID 或 placeholder URL 还在，部署脚本会提前失败。详见 [configuration](./docs/specs/configuration.md)。
 
 生产环境必需的 secret：
 
@@ -97,11 +99,13 @@ pnpm deploy:web
 
 ```txt
 apps/web                 TanStack Start 应用、管理后台、公开站点、文档和 API 路由
+packages/auth            Better Auth 工厂和 TanStack helper
 packages/core            内容类型、演示数据、Markdown 与 i18n helper
 packages/db              Drizzle schema 与 D1 migrations
 packages/ui              共享 UI primitives
 skills                   自动化初始化与 OpenAPI 维护 Skill
 apps/web/content/docs    公开 Fumadocs 文档源，docs/site 指向这里
+docs/prd.md              中文需求文档；英文版见 docs/prd.en.md
 docs/specs               项目规格、部署记录和发布规划记录
 ```
 
@@ -116,6 +120,8 @@ docs/specs               项目规格、部署记录和发布规划记录
 - [评论](./apps/web/content/docs/comments.zh.md)
 - [进阶配置](./apps/web/content/docs/advanced-configuration.zh.md)
 - [API](./apps/web/content/docs/api.zh.md)
+- [Configuration](./docs/specs/configuration.md)
+- [PRD（中文）](./docs/prd.md) / [PRD (English)](./docs/prd.en.md)
 
 根目录下的 `docs/specs` 用于项目规格、部署记录、验收记录和发布规划记录，不作为公开 Fumadocs 内容整包发布。
 

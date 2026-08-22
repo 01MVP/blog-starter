@@ -176,7 +176,7 @@ async function generateSlugAndTags(
     : undefined;
 
   return {
-    slug: slug ? slugify(slug).replace(/[^a-z0-9-]/g, "") : undefined,
+    slug: slug ? slugify(slug) || undefined : undefined,
     tags,
   };
 }

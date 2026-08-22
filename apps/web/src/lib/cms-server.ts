@@ -1,4 +1,11 @@
-import { type Comment, type Post, type Series, type SiteSettings, type Tag } from "@repo/core";
+import {
+  pickRelatedPosts,
+  type Comment,
+  type Post,
+  type Series,
+  type SiteSettings,
+  type Tag,
+} from "@repo/core";
 import { createServerFn } from "@tanstack/react-start";
 
 export type BlogPostPageData = {
@@ -62,7 +69,7 @@ export type AboutPageData = {
 export const $getBlogPostPage = createServerFn({ method: "GET" })
   .inputValidator((data: { slug: string }) => data)
   .handler(async ({ data }): Promise<BlogPostPageData | null> => {
-    const [{ env }, { getD1PostBySlug, getD1SiteSettings, listD1ApprovedComments }] =
+    const [{ env }, { getD1PostBySlug, getD1SiteSettings, listD1ApprovedComments, listD1Posts }] =
       await Promise.all([import("cloudflare:workers"), import("./cms-d1")]);
     const [siteSettings, post] = await Promise.all([
       getD1SiteSettings(),
@@ -73,10 +80,15 @@ export const $getBlogPostPage = createServerFn({ method: "GET" })
       return null;
     }
 
+    const [comments, relatedCandidates] = await Promise.all([
+      listD1ApprovedComments(post.id),
+      listD1Posts({ limit: 24 }),
+    ]);
+
     return {
       post,
-      comments: await listD1ApprovedComments(post.id),
-      relatedPosts: [],
+      comments,
+      relatedPosts: pickRelatedPosts(post, relatedCandidates),
       siteSettings,
       turnstileSiteKey: env.VITE_TURNSTILE_SITE_KEY?.trim() || null,
     };

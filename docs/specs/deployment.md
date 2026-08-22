@@ -55,6 +55,15 @@ The remote databases have applied:
 - `0005_drop_projects.sql`
 - `0006_drop_legacy_auth_tables.sql`
 - `0007_drop_pages.sql`
+- `0008_post_series.sql`
+- `0009_user_comment_status.sql`
+- `0010_analytics_events.sql`
+- `0011_server_settings.sql`
+- `0012_email_subscriptions.sql`
+- `0013_comment_reply_notifications.sql`
+- `0014_post_sources.sql`
+- `0015_repair_weekly_blog_update_runs.sql`
+- `0016_comment_ai_moderation_audit.sql`
 
 ## Build And Deploy
 

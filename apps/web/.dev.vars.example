@@ -1,5 +1,5 @@
-# Copy to apps/web/.dev.vars for local Wrangler secrets.
-# Wrangler reads .dev.vars next to apps/web/wrangler.jsonc.
+# Local Wrangler secrets for `pnpm dev:web`.
+# Copy to apps/web/.dev.vars and fill in the values you actually use.
 
 # Required in production. Local development has a built-in fallback.
 BETTER_AUTH_SECRET=
@@ -12,7 +12,7 @@ GITHUB_CLIENT_SECRET=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 
-# Optional Turnstile bot protection. Site key can also live in wrangler vars.
+# Optional Turnstile bot protection
 CMS_TURNSTILE_SECRET_KEY=
 
 # Optional Resend email delivery

@@ -4089,6 +4089,20 @@ export const login_email: ((inputs?: Login_EmailInputs, options?: {
 /**
 * | output |
 * | --- |
+* | "hello@example.com" |
+*
+* @param {Login_Email_PlaceholderInputs} inputs
+* @param {{ locale?: "en" | "zh" }} options
+* @returns {LocalizedString}
+*/
+export const login_email_placeholder: ((inputs?: Login_Email_PlaceholderInputs, options?: {
+    locale?: "en" | "zh";
+}) => LocalizedString) & import("../runtime.js").MessageMetadata<Login_Email_PlaceholderInputs, {
+    locale?: "en" | "zh";
+}, {}>;
+/**
+* | output |
+* | --- |
 * | "An error occurred while signing in." |
 *
 * @param {Login_ErrorInputs} inputs
@@ -4649,6 +4663,20 @@ export const signup_confirm_password: ((inputs?: Signup_Confirm_PasswordInputs, 
 /**
 * | output |
 * | --- |
+* | "Confirm password" |
+*
+* @param {Signup_Confirm_Password_PlaceholderInputs} inputs
+* @param {{ locale?: "en" | "zh" }} options
+* @returns {LocalizedString}
+*/
+export const signup_confirm_password_placeholder: ((inputs?: Signup_Confirm_Password_PlaceholderInputs, options?: {
+    locale?: "en" | "zh";
+}) => LocalizedString) & import("../runtime.js").MessageMetadata<Signup_Confirm_Password_PlaceholderInputs, {
+    locale?: "en" | "zh";
+}, {}>;
+/**
+* | output |
+* | --- |
 * | "An error occurred while signing up." |
 *
 * @param {Signup_ErrorInputs} inputs
@@ -4705,6 +4733,20 @@ export const signup_name: ((inputs?: Signup_NameInputs, options?: {
 /**
 * | output |
 * | --- |
+* | "your name" |
+*
+* @param {Signup_Name_PlaceholderInputs} inputs
+* @param {{ locale?: "en" | "zh" }} options
+* @returns {LocalizedString}
+*/
+export const signup_name_placeholder: ((inputs?: Signup_Name_PlaceholderInputs, options?: {
+    locale?: "en" | "zh";
+}) => LocalizedString) & import("../runtime.js").MessageMetadata<Signup_Name_PlaceholderInputs, {
+    locale?: "en" | "zh";
+}, {}>;
+/**
+* | output |
+* | --- |
 * | "Username is required." |
 *
 * @param {Signup_Name_RequiredInputs} inputs
@@ -4719,6 +4761,20 @@ export const signup_name_required: ((inputs?: Signup_Name_RequiredInputs, option
 /**
 * | output |
 * | --- |
+* | "Hide password" |
+*
+* @param {Signup_Password_HideInputs} inputs
+* @param {{ locale?: "en" | "zh" }} options
+* @returns {LocalizedString}
+*/
+export const signup_password_hide: ((inputs?: Signup_Password_HideInputs, options?: {
+    locale?: "en" | "zh";
+}) => LocalizedString) & import("../runtime.js").MessageMetadata<Signup_Password_HideInputs, {
+    locale?: "en" | "zh";
+}, {}>;
+/**
+* | output |
+* | --- |
 * | "Passwords do not match." |
 *
 * @param {Signup_Password_MismatchInputs} inputs
@@ -4728,6 +4784,20 @@ export const signup_name_required: ((inputs?: Signup_Name_RequiredInputs, option
 export const signup_password_mismatch: ((inputs?: Signup_Password_MismatchInputs, options?: {
     locale?: "en" | "zh";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Signup_Password_MismatchInputs, {
+    locale?: "en" | "zh";
+}, {}>;
+/**
+* | output |
+* | --- |
+* | "Show password" |
+*
+* @param {Signup_Password_ShowInputs} inputs
+* @param {{ locale?: "en" | "zh" }} options
+* @returns {LocalizedString}
+*/
+export const signup_password_show: ((inputs?: Signup_Password_ShowInputs, options?: {
+    locale?: "en" | "zh";
+}) => LocalizedString) & import("../runtime.js").MessageMetadata<Signup_Password_ShowInputs, {
     locale?: "en" | "zh";
 }, {}>;
 /**
@@ -4854,6 +4924,20 @@ export const theme_preset_apple: ((inputs?: Theme_Preset_AppleInputs, options?: 
 export const theme_preset_claude: ((inputs?: Theme_Preset_ClaudeInputs, options?: {
     locale?: "en" | "zh";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Theme_Preset_ClaudeInputs, {
+    locale?: "en" | "zh";
+}, {}>;
+/**
+* | output |
+* | --- |
+* | "Warm Editorial" |
+*
+* @param {Theme_Preset_EditorialInputs} inputs
+* @param {{ locale?: "en" | "zh" }} options
+* @returns {LocalizedString}
+*/
+export const theme_preset_editorial: ((inputs?: Theme_Preset_EditorialInputs, options?: {
+    locale?: "en" | "zh";
+}) => LocalizedString) & import("../runtime.js").MessageMetadata<Theme_Preset_EditorialInputs, {
     locale?: "en" | "zh";
 }, {}>;
 /**
@@ -5273,6 +5357,7 @@ export type Layout_Preset_ShelfInputs = {};
 export type LoginInputs = {};
 export type Login_AlternativeInputs = {};
 export type Login_EmailInputs = {};
+export type Login_Email_PlaceholderInputs = {};
 export type Login_ErrorInputs = {};
 export type Login_GreetingInputs = {
     name: NonNullable<unknown>;
@@ -5328,14 +5413,18 @@ export type Series_TitleInputs = {};
 export type Site_SubtitleInputs = {};
 export type SignupInputs = {};
 export type Signup_Confirm_PasswordInputs = {};
+export type Signup_Confirm_Password_PlaceholderInputs = {};
 export type Signup_ErrorInputs = {};
 export type Signup_GreetingInputs = {
     name: NonNullable<unknown>;
 };
 export type Signup_Has_AccountInputs = {};
 export type Signup_NameInputs = {};
+export type Signup_Name_PlaceholderInputs = {};
 export type Signup_Name_RequiredInputs = {};
+export type Signup_Password_HideInputs = {};
 export type Signup_Password_MismatchInputs = {};
+export type Signup_Password_ShowInputs = {};
 export type Signup_PendingInputs = {};
 export type Sign_OutInputs = {};
 export type Submit_CommentInputs = {};
@@ -5345,6 +5434,7 @@ export type Theme_DarkInputs = {};
 export type Theme_LightInputs = {};
 export type Theme_Preset_AppleInputs = {};
 export type Theme_Preset_ClaudeInputs = {};
+export type Theme_Preset_EditorialInputs = {};
 export type Theme_Preset_BrutalistInputs = {};
 export type Theme_Preset_MakerInputs = {};
 export type Theme_SystemInputs = {};

@@ -1,4 +1,4 @@
-import { getSiteSettingsForLocale } from "@repo/core";
+import { localizeSiteSettings } from "@repo/core";
 import { Button } from "@repo/ui/components/button";
 import { Input } from "@repo/ui/components/input";
 import { Label } from "@repo/ui/components/label";
@@ -10,12 +10,17 @@ import { toast } from "sonner";
 import { getCurrentLocale } from "#/lib/i18n";
 import { m } from "#/paraglide/messages.js";
 
+import { Route as GuestRoute } from "./route";
+
 export const Route = createFileRoute("/_guest/reset-password")({
   component: ResetPasswordForm,
 });
 
 function ResetPasswordForm() {
-  const siteSettings = getSiteSettingsForLocale(getCurrentLocale());
+  const siteSettings = localizeSiteSettings(
+    GuestRoute.useLoaderData().siteSettings,
+    getCurrentLocale(),
+  );
   const token =
     typeof window === "undefined" ? "" : new URLSearchParams(window.location.search).get("token");
   const requestReset = useMutation({
@@ -140,7 +145,7 @@ function ResetPasswordForm() {
               id="email"
               name="email"
               type="email"
-              placeholder="hello@example.com"
+              placeholder={m.login_email_placeholder()}
               readOnly={isPending}
               required
             />

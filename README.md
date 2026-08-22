@@ -34,7 +34,9 @@ The button works for Workers applications. This repository is a pnpm monorepo, s
 pnpm deploy:web
 ```
 
-Before the first production deploy, create or choose the target D1 database, R2 bucket, and KV namespace, then replace the placeholders in `apps/web/wrangler.jsonc`. The deploy script fails early while placeholder IDs or placeholder URLs remain.
+This repository's `apps/web/wrangler.jsonc` is the live demo at `blog.01mvp.com`. Do not copy those D1, KV, or R2 ids into a new site.
+
+When you fork the template, copy `apps/web/wrangler.example.jsonc` to `apps/web/wrangler.jsonc`, create your own D1 database, R2 bucket, and KV namespace, then replace the placeholders. The deploy script fails early while placeholder IDs or placeholder URLs remain. See [configuration](./docs/specs/configuration.md).
 
 Required production secrets:
 
@@ -97,11 +99,13 @@ This checks the required R2 bucket, builds the web app, applies remote D1 migrat
 
 ```txt
 apps/web                 TanStack Start app, admin UI, public site, docs, API routes
+packages/auth            Better Auth factory and TanStack helpers
 packages/core            content types, demo data, Markdown and i18n helpers
 packages/db              Drizzle schema and D1 migrations
 packages/ui              shared UI primitives
 skills                   AI initialization and OpenAPI maintenance Skill
 apps/web/content/docs    public Fumadocs source, mirrored at docs/site
+docs/prd.md              Chinese PRD; English translation in docs/prd.en.md
 docs/specs               project specifications and release planning records
 ```
 
@@ -116,6 +120,8 @@ Start with these guides:
 - [Comments](./apps/web/content/docs/comments.md)
 - [Advanced configuration](./apps/web/content/docs/advanced-configuration.md)
 - [API](./apps/web/content/docs/api.md)
+- [Configuration](./docs/specs/configuration.md)
+- [PRD (English)](./docs/prd.en.md) / [PRD (中文)](./docs/prd.md)
 
 The root `docs/specs` folder is for project specifications, deployment records, acceptance notes, and release planning records. It is intentionally separate from the public Fumadocs source.
 

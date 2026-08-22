@@ -4,6 +4,13 @@ import { describe, it, expect, vi } from "vitest";
 vi.mock("@repo/core", () => ({
   siteSettings: { primaryLanguage: "en", url: "https://example.com" },
   resolveLocale: (locale?: string) => (locale === "zh" ? "zh" : "en"),
+  slugify: (value: string) =>
+    value
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9一-龥]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 96),
   findPost: vi.fn(),
   localizePost: vi.fn((_post: any, _locale: string) => _post),
   createPost: vi.fn((input: any) => ({
@@ -27,7 +34,7 @@ vi.mock("#/lib/cms-d1", () => ({
   getD1PostByIdOrSlug: vi.fn(),
 }));
 
-import { jsonResponse, readJsonBody, getApiLocale } from "../cms-api";
+import { createPostPreview, jsonResponse, readJsonBody, getApiLocale } from "../cms-api";
 
 describe("jsonResponse", () => {
   it("returns a Response with JSON body", async () => {
@@ -193,5 +200,22 @@ describe("getApiLocale", () => {
       headers: { "accept-language": "fr-FR,fr;q=0.9" },
     });
     expect(getApiLocale(request)).toBe("en");
+  });
+});
+
+describe("createPostPreview", () => {
+  it("slugifies English titles", () => {
+    const preview = createPostPreview({ title: "Hello World" });
+    expect(preview.slug).toBe("hello-world");
+  });
+
+  it("preserves Chinese characters in generated slugs", () => {
+    const preview = createPostPreview({ title: "你好世界" });
+    expect(preview.slug).toBe("你好世界");
+  });
+
+  it("uses an explicit slug when provided", () => {
+    const preview = createPostPreview({ title: "Hello World", slug: "custom-slug" });
+    expect(preview.slug).toBe("custom-slug");
   });
 });

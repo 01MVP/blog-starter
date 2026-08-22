@@ -1,4 +1,4 @@
-import { type ContentStatus, type Post, type SupportedLocale } from "@repo/core";
+import { slugify, type ContentStatus, type Post, type SupportedLocale } from "@repo/core";
 
 export {
   apiTokenScopes,
@@ -35,7 +35,7 @@ export function createPostPreview(
   const post: Post = {
     id: `post_${crypto.randomUUID()}`,
     title,
-    slug: body.slug?.trim() || title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+    slug: body.slug?.trim() || slugify(title) || "untitled-post",
     excerpt: body.excerpt?.trim() || "",
     coverImage: body.coverImage?.trim() || "",
     contentMarkdown: body.contentMarkdown?.trim() || `# ${title}\n`,

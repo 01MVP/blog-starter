@@ -766,7 +766,7 @@ function AdminSettingsPage() {
               >
                 <option value="maker">{m.theme_preset_maker()}</option>
                 <option value="apple">{m.theme_preset_apple()}</option>
-                <option value="editorial">{m.theme_preset_claude()}</option>
+                <option value="editorial">{m.theme_preset_editorial()}</option>
                 <option value="brutalist">{m.theme_preset_brutalist()}</option>
               </select>
             </div>

@@ -13,8 +13,8 @@ import * as schema from "@repo/db/schema/cms";
 import { eq, and, or, like, desc, asc, inArray, sql } from "drizzle-orm";
 
 import { cachedGet, invalidateCache } from "./cms-cache";
-import { getD1SiteSettings } from "./cms-d1-assets";
 import { hasSeriesInput, resolveD1SeriesId } from "./cms-d1-series";
+import { getD1SiteSettings } from "./cms-d1-settings";
 import {
   MAX_EXCERPT_LENGTH,
   MAX_SEO_DESCRIPTION_LENGTH,
